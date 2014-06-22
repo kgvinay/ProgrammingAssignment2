@@ -10,8 +10,8 @@ makeCacheMatrix <- function(x = matrix()) {
     m<<-NULL
   }
   get<-function() x
-  setmatrix<-function(solve) m<<- solve
-  getmatrix<-function() m
+  setmatrix<-function(solve) m<<- solve  ## Solve Creates Inverse of a matrix and Set it.
+  getmatrix<-function() m  ## Get Stored matrix
   list(set=set, get=get,
        setmatrix=setmatrix,
        getmatrix=getmatrix)
@@ -24,12 +24,12 @@ cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
   
   m<-x$getmatrix()
-  if(!is.null(m)){
+  if(!is.null(m)){  ## If Matrix is Cached
     message("getting cached data")
     return(m)
   }
   matrix<-x$get()
-  m<-solve(matrix, ...)
+  m<-solve(matrix, ...) ## Compute Inverser of a Matrix
   x$setmatrix(m)
   m
 }
